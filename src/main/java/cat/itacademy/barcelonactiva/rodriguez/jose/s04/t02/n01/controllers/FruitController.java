@@ -40,9 +40,9 @@ public class FruitController {
             List<Fruit> fruits = new ArrayList<>();
 
             if (title == null)
-                iFruitRepository.findAll().forEach(fruits::add);
+                fruits.addAll(iFruitRepository.findAll());
             else
-                iFruitRepository.findByNameContaining(title).forEach(fruits::add);
+                fruits.addAll(iFruitRepository.findByNameContaining(title));
 
             if (fruits.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -58,11 +58,7 @@ public class FruitController {
     public ResponseEntity<Fruit> getTutorialById(@PathVariable("id") long id) {
         Optional<Fruit> fruitData = iFruitRepository.findById(id);
 
-        if (fruitData.isPresent()) {
-            return new ResponseEntity<>(fruitData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return fruitData.map(fruit -> new ResponseEntity<>(fruit, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/fruita/add")
