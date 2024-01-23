@@ -1,10 +1,5 @@
 package cat.itacademy.barcelonactiva.rodriguez.jose.s04.t02.n01.controllers;
 
-//TODO  http://localhost:8080/fruita/add
-//TODO  http://localhost:8080/fruita/update
-//TODO  http://localhost:8080/fruita/delete/{id}
-//TODO  http://localhost:8080/fruita/getOne/{id}
-//TODO  http://localhost:8080/fruita/getAll*/
 
 import java.util.List;
 
